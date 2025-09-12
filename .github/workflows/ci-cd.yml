@@ -1,4 +1,4 @@
-name: Halowork CI/CD Pipeline
+name: Hellowork CI/CD Pipeline
 
 on:
   push:
@@ -67,11 +67,11 @@ jobs:
     
     - name: 构建Docker镜像
       run: |
-        docker build -t halowork:latest .
+        docker build -t hellowork:latest .
     
     - name: 测试Docker镜像
       run: |
-        docker run -d -p 8080:5000 --name test-container halowork:latest
+        docker run -d -p 8080:5000 --name test-container hellowork:latest
         sleep 10
         curl -f http://localhost:8080/health
         docker stop test-container
@@ -86,7 +86,7 @@ jobs:
     steps:
     - name: 部署通知
       run: |
-        echo "🚀 Halowork应用已准备部署"
+        echo "🚀 Hellowork应用已准备部署"
         echo "✅ 所有测试通过"
         echo "✅ Docker镜像构建成功"
         echo "📦 准备部署到生产环境"

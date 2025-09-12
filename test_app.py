@@ -13,7 +13,7 @@ def test_home_page(client):
     """测试主页"""
     response = client.get('/')
     assert response.status_code == 200
-    assert 'Halowork' in response.data.decode('utf-8')
+    assert 'Hellowork' in response.data.decode('utf-8')
 
 def test_health_check(client):
     """测试健康检查接口"""
@@ -31,7 +31,7 @@ def test_app_info(client):
     assert response.status_code == 200
     
     data = json.loads(response.data)
-    assert data['app_name'] == 'Halowork'
+    assert data['app_name'] == 'Hellowork'
     assert data['version'] == '1.0.0'
     assert 'environment' in data
     assert 'python_version' in data
@@ -40,7 +40,7 @@ def test_about_page(client):
     """测试关于页面"""
     response = client.get('/about')
     assert response.status_code == 200
-    assert '关于 Halowork' in response.data.decode('utf-8')
+    assert '关于 Hellowork' in response.data.decode('utf-8')
 
 def test_404_page(client):
     """测试404页面"""

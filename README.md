@@ -1,10 +1,10 @@
-# 🔥 Halowork - CI/CD 测试项目
+# 🔥 Hellowork - CI/CD 测试项目
 
 一个专为测试持续集成和持续部署(CI/CD)流程而设计的 Flask Web 应用程序。
 
 ## 📋 项目概述
 
-Halowork 是一个简洁而功能完整的 Flask 应用，包含了验证 CI/CD 流程所需的所有基础组件：
+Hellowork 是一个简洁而功能完整的 Flask 应用，包含了验证 CI/CD 流程所需的所有基础组件：
 - 健康检查接口
 - 应用信息API
 - 现代化Web界面
@@ -21,7 +21,7 @@ Halowork 是一个简洁而功能完整的 Flask 应用，包含了验证 CI/CD 
 1. **克隆项目**
    ```bash
    git clone <repository-url>
-   cd halowork
+   cd hellowork
    ```
 
 2. **创建虚拟环境** (推荐)
@@ -86,8 +86,8 @@ CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
 
 构建和运行:
 ```bash
-docker build -t halowork .
-docker run -p 5000:5000 halowork
+docker build -t hellowork .
+docker run -p 5000:5000 hellowork
 ```
 
 ## 🔄 CI/CD 集成示例
@@ -96,7 +96,7 @@ docker run -p 5000:5000 halowork
 
 创建 `.github/workflows/deploy.yml`:
 ```yaml
-name: Deploy Halowork
+name: Deploy Hellowork
 
 on:
   push:
@@ -136,7 +136,7 @@ pytest --cov=app
 ## 📂 项目结构
 
 ```
-halowork/
+hellowork/
 ├── app.py              # Flask 主应用文件
 ├── requirements.txt    # Python 依赖
 ├── README.md          # 项目说明

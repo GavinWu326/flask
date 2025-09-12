@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Halowork 启动脚本
+Hellowork 启动脚本
 简化的应用启动入口
 """
 
@@ -9,7 +9,7 @@ from app import app
 import os
 
 if __name__ == '__main__':
-    print("🔥 启动 Halowork 应用...")
+    print("🔥 启动 Hellowork 应用...")
     print("📡 应用将在以下地址启动:")
     
     host = os.environ.get('FLASK_HOST', '127.0.0.1')
@@ -27,4 +27,4 @@ if __name__ == '__main__':
     try:
         app.run(host=host, port=port, debug=debug)
     except KeyboardInterrupt:
-        print("\n👋 Halowork 应用已停止")
+        print("\n👋 Hellowork 应用已停止")
