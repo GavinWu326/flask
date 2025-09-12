@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="text-center mb-5">关于 Halowork 项目</h1>
+                
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">🎯 项目目标</h3>
+                        <p class="card-text">
+                            Halowork 是一个专为测试 CI/CD (持续集成/持续部署) 流程而设计的 Flask Web 应用程序。
+                            它提供了完整的项目结构和必要的接口，帮助开发者验证自动化部署流程。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">✨ 主要特性</h3>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>健康检查接口:</strong> <code>/health</code> - 用于监控应用状态
+                            </li>
+                            <li class="list-group-item">
+                                <strong>应用信息接口:</strong> <code>/api/info</code> - 提供版本和环境信息
+                            </li>
+                            <li class="list-group-item">
+                                <strong>响应式界面:</strong> 基于 Bootstrap 5 的现代化 UI
+                            </li>
+                            <li class="list-group-item">
+                                <strong>环境变量支持:</strong> 便于容器化和云部署
+                            </li>
+                            <li class="list-group-item">
+                                <strong>标准项目结构:</strong> 遵循 Flask 最佳实践
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">🛠️ 技术栈</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check-circle text-success"></i> Python 3.x</li>
+                                    <li><i class="bi bi-check-circle text-success"></i> Flask 框架</li>
+                                    <li><i class="bi bi-check-circle text-success"></i> Jinja2 模板引擎</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check-circle text-success"></i> Bootstrap 5</li>
+                                    <li><i class="bi bi-check-circle text-success"></i> RESTful API</li>
+                                    <li><i class="bi bi-check-circle text-success"></i> JSON 响应</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">🚀 部署信息</h3>
+                        <p class="card-text">
+                            此应用支持多种部署方式，包括传统服务器部署、Docker 容器化部署，
+                            以及云平台部署（如 AWS、Azure、Google Cloud）。
+                        </p>
+                        <div class="alert alert-info">
+                            <strong>提示:</strong> 访问 <a href="/api/info" class="alert-link">/api/info</a> 
+                            接口可以获取当前部署的详细信息。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="/" class="btn btn-primary btn-lg">返回首页</a>
+                    <a href="/health" class="btn btn-success btn-lg">检查应用状态</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
