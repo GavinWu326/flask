@@ -1,162 +1,174 @@
-# 🔥 Hellowork - CI/CD 测试项目
+# flask
 
-一个专为测试持续集成和持续部署(CI/CD)流程而设计的 Flask Web 应用程序。
+<div align="center">
 
-## 📋 项目概述
+轻量级 Flask 示例项目，内置页面路由、健康检查、应用信息接口、测试用例和 Docker 部署配置，适合用于 CI/CD 流程演示。
 
-Hellowork 是一个简洁而功能完整的 Flask 应用，包含了验证 CI/CD 流程所需的所有基础组件：
-- 健康检查接口
-- 应用信息API
-- 现代化Web界面
-- 环境变量配置支持
+<p>
+  <img src="https://img.shields.io/badge/Python-3.9%2B-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Flask-2.3-000000?style=flat-square&logo=flask&logoColor=white" alt="Flask">
+  <img src="https://img.shields.io/badge/Pytest-Tested-0A9EDC?style=flat-square&logo=pytest&logoColor=white" alt="Pytest">
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker">
+</p>
 
-## 🚀 快速开始
+</div>
 
-### 环境要求
-- Python 3.7+
-- pip
+## 项目概览
 
-### 安装和运行
+这个仓库实际运行的是一个名为 `Hellowork` 的 Flask Web 应用。它保留了最常见的后端基础能力：模板页面、JSON API、健康检查、环境变量配置、自动化测试和容器化部署，因此非常适合作为以下场景的起点：
 
-1. **克隆项目**
-   ```bash
-   git clone <repository-url>
-   cd hellowork
-   ```
+- Flask 入门项目
+- GitHub Actions / CI/CD 流程验证
+- 容器化部署演示
+- Web 服务健康检查与监控示例
 
-2. **创建虚拟环境** (推荐)
-   ```bash
-   python -m venv venv
-   # Windows
-   venv\Scripts\activate
-   # Linux/Mac
-   source venv/bin/activate
-   ```
+## 功能一览
 
-3. **安装依赖**
-   ```bash
-   pip install -r requirements.txt
-   ```
+| 功能 | 说明 |
+| --- | --- |
+| 首页 | `GET /`，渲染模板页面并展示当前时间 |
+| 关于页 | `GET /about`，展示项目介绍页面 |
+| 健康检查 | `GET /health`，便于监控和部署探活 |
+| 应用信息 | `GET /api/info`，返回版本、环境、Python 信息 |
+| 自动化测试 | `pytest` 覆盖核心页面和 API |
+| Docker 化 | 提供生产向 Gunicorn 启动方式 |
 
-4. **运行应用**
-   ```bash
-   python app.py
-   ```
+## 项目结构
 
-应用将在 http://localhost:5000 启动
+```text
+flask
+├── app.py
+├── run.py
+├── test_app.py
+├── requirements.txt
+├── Dockerfile
+└── templates
+    ├── base.html
+    ├── index.html
+    └── about.html
+```
 
-## 🔧 环境变量配置
+## 快速开始
 
-支持以下环境变量进行配置：
+### 1. 安装依赖
 
-| 变量名 | 默认值 | 说明 |
-|--------|--------|------|
-| `FLASK_HOST` | 0.0.0.0 | 应用监听地址 |
-| `FLASK_PORT` | 5000 | 应用监听端口 |
-| `FLASK_DEBUG` | False | 调试模式开关 |
-| `FLASK_ENV` | development | 运行环境 |
+```bash
+git clone https://github.com/GavinWu326/flask.git
+cd flask
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
-## 📡 API 接口
+Windows 可使用：
+
+```bash
+venv\Scripts\activate
+```
+
+### 2. 启动应用
+
+```bash
+python app.py
+```
+
+默认访问地址：
+
+- `http://localhost:5000/`
+- `http://localhost:5000/health`
+- `http://localhost:5000/api/info`
+
+## 环境变量
+
+| 变量 | 默认值 | 说明 |
+| --- | --- | --- |
+| `FLASK_HOST` | `0.0.0.0` | 服务监听地址 |
+| `FLASK_PORT` | `5000` | 服务端口 |
+| `FLASK_DEBUG` | `False` | 是否开启调试模式 |
+| `FLASK_ENV` | `development` | 运行环境标识 |
+
+示例：
+
+```bash
+export FLASK_ENV=production
+export FLASK_PORT=5000
+python app.py
+```
+
+## API 示例
 
 ### 健康检查
-- **URL**: `/health`
-- **方法**: GET
-- **用途**: 用于负载均衡器和监控系统检查应用状态
+
+```http
+GET /health
+```
+
+返回示例：
+
+```json
+{
+  "status": "healthy",
+  "message": "Hellowork应用运行正常",
+  "timestamp": "2026-04-09T12:00:00",
+  "version": "1.0.0"
+}
+```
 
 ### 应用信息
-- **URL**: `/api/info`
-- **方法**: GET
-- **用途**: 获取应用版本、环境等信息
 
-## 🐳 Docker 部署
-
-创建 Dockerfile:
-```dockerfile
-FROM python:3.9-slim
-
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY . .
-
-EXPOSE 5000
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+```http
+GET /api/info
 ```
 
-构建和运行:
-```bash
-docker build -t hellowork .
-docker run -p 5000:5000 hellowork
+返回示例：
+
+```json
+{
+  "app_name": "Hellowork",
+  "version": "1.0.0",
+  "environment": "development",
+  "python_version": "3.x",
+  "description": "这是一个用于测试CI/CD流程的Flask项目"
+}
 ```
 
-## 🔄 CI/CD 集成示例
+## 测试
 
-### GitHub Actions
-
-创建 `.github/workflows/deploy.yml`:
-```yaml
-name: Deploy Hellowork
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-    - name: Health check
-      run: |
-        python app.py &
-        sleep 5
-        curl http://localhost:5000/health
-```
-
-## 🧪 测试
-
-项目包含基础的测试框架：
+项目自带基础测试，可以直接运行：
 
 ```bash
-# 运行测试
 pytest
-
-# 生成测试覆盖率报告
-pytest --cov=app
 ```
 
-## 📂 项目结构
+测试覆盖了：
 
+- 首页与关于页是否可访问
+- 健康检查接口返回结构
+- 应用信息接口字段
+- 不存在页面的 404 行为
+
+## Docker 部署
+
+### 构建镜像
+
+```bash
+docker build -t hellowork-flask .
 ```
-hellowork/
-├── app.py              # Flask 主应用文件
-├── requirements.txt    # Python 依赖
-├── README.md          # 项目说明
-├── templates/         # HTML 模板
-│   ├── base.html      # 基础模板
-│   ├── index.html     # 首页
-│   └── about.html     # 关于页面
-└── .github/           # CI/CD 配置 (可选)
-    └── workflows/
-        └── deploy.yml
+
+### 运行容器
+
+```bash
+docker run -p 5000:5000 hellowork-flask
 ```
 
-## 🤝 贡献
+容器内会使用 Gunicorn 启动应用，并自带 `/health` 探活检查。
 
-欢迎提交 Issue 和 Pull Request 来改进这个项目！
+## 适用场景
 
-## 📄 许可证
+- 用作最小可运行 Flask 模板
+- 测试 CI/CD 构建、部署与探活流程
+- 演示 Gunicorn + Docker 的基础部署方式
 
-MIT License
+## License
 
----
-
-⭐ 如果这个项目对您有帮助，请给个 Star！
+MIT
